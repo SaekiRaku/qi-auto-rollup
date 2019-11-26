@@ -1,0 +1,33 @@
+{
+  "name": "qi-auto-plugin-template",
+  "version": "1.0.0",
+  "description": "The template for making plugin of qi-auto.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node -r esm bootstrap.js dev",
+    "build": "node -r esm bootstrap.js build",
+    "test": "npm run build && mocha --require @babel/register ./test/**/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaekiRaku/qi-auto-plugin-template.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SaekiRaku/qi-auto-plugin-template/issues"
+  },
+  "homepage": "https://github.com/SaekiRaku/qi-auto-plugin-template#readme",
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/register": "^7.7.4",
+    "@qiqi1996/qi-auto": "^1.1.12",
+    "@rollup/plugin-strip": "^1.3.1",
+    "esm": "^3.2.25",
+    "mocha": "^6.2.2",
+    "rollup": "^1.27.5",
+    "rollup-plugin-babel": "^4.3.3"
+  }
+}
