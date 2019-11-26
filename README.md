@@ -1,59 +1,23 @@
-# Qi Auto Plugin Template
+# Qi Auto Rollup
 
-> Other languages / 其他语言:  
-> [English](./README.md) | [简体中文](./README.zh_CN.md)  
+**WARNING：This version is not ready to release for production purpose**
 
-This repository will help you build plugins of `qi-auto` more easier.
+Automatically generate config for rollup.
 
-## Features
+## Installation
 
-- Out of the box develop & build environment for `qi-auto` plugins.
-- Code bundle based on `Rollup` + `Babel`.
-- ESModule supported by `Esm`.
-- Unit test based on `Mocha`.
+```
+npm i --save-dev @qiqi1996/qi-auto-rollup
+```
 
 ## Usage
 
-### Basic
+Read The Document  
+- [English](./docs/README.md)
+- [简体中文](./docs/README.zh_CN.md)
 
-```
-npm i
-# Install the dependencies
-```
+## License
 
-### Command
+MIT
 
-#### Development
-
-```
-npm run dev
-# Start the development environment
-```
-
-This command will auto (re)build the plugin when the source code files have been modified. And (re)load the `source/index.example.js` automaticly.
-
-#### Build
-
-```
-npm run build
-# Start to build the whole plugin
-```
-
-#### Unit Test
-
-```
-npm run test
-# Start testing
-```
-
-### Template Structure
-
-- **common** - Usefull info and function for this template.
-- **constructor** - `Rollup` config and operation of development and build.
-- **source** - The source code of your plugin.
-- **dist** - The build result of your plugin.
-- **test** - (Optional) The test case for your plugin.
-- **docs** - (Optional) The detail document of your plugin.
-- **example** - (Optional) The example directory structure for demonstrate the usage of your plugin.
-- **bootstrap.js** - The entrypoint of this template.
-- **manifest.json** - The information of your plugin, using by this template.
+Copyright (c) 2019~present, qiqi1996.com.

@@ -5,6 +5,9 @@ export default {
     dev(callback) {
         let watcher = watch(config.input);
         watcher.on("event", (evt) => {
+            if (evt.code == "ERROR") {
+                console.log(evt);
+            }
             if (evt.code == "END") {
                 callback();
             }

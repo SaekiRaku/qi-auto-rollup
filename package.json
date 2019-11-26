@@ -2,7 +2,8 @@
   "name": "qi-auto-plugin-template",
   "version": "1.0.0",
   "description": "The template for making plugin of qi-auto.",
-  "main": "index.js",
+  "main": "dist/qi-auto-rollup.js",
+  "module": "dist/qi-auto-rollup.es.js",
   "scripts": {
     "dev": "node -r esm bootstrap.js dev",
     "build": "node -r esm bootstrap.js build",
