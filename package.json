@@ -1,6 +1,6 @@
 {
   "name": "@qiqi1996/qi-auto-rollup",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automatically generate config for rollup.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SaekiRaku/qi-auto-plugin-template.git"
+    "url": "git+https://github.com/SaekiRaku/qi-auto-rollup.git"
   },
   "author": "qiqi1996",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SaekiRaku/qi-auto-plugin-template/issues"
+    "url": "https://github.com/SaekiRaku/qi-auto-rollup/issues"
   },
-  "homepage": "https://github.com/SaekiRaku/qi-auto-plugin-template#readme",
+  "homepage": "https://github.com/SaekiRaku/qi-auto-rollup#readme",
   "devDependencies": {
     "@babel/core": "^7.7.4",
     "@babel/plugin-proposal-class-properties": "^7.7.4",

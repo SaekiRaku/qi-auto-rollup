@@ -3,8 +3,6 @@
 > Other languages / 其他语言:  
 > [English](./README.md) | [简体中文](./README.zh_CN.md) 
 
-**WARNING：This version is not ready to release for production purpose**
-
 Automatically generate config for rollup.
 
 ## Installation
