@@ -1,5 +1,5 @@
 {
-  "name": "qi-auto-rollup",
+  "name": "@qiqi1996/qi-auto-rollup",
   "version": "1.0.0",
   "description": "Automatically generate config for rollup.",
   "main": "dist/index.js",
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/SaekiRaku/qi-auto-plugin-template.git"
   },
-  "author": "",
+  "author": "qiqi1996",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/SaekiRaku/qi-auto-plugin-template/issues"
