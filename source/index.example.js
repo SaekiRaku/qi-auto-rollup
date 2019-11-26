@@ -1,5 +1,5 @@
 import path from "path";
-import { rollup } from "rollup";
+import { rollup, watch } from "rollup";
 import qiauto from "@qiqi1996/qi-auto";
 
 import common from "../common";
@@ -25,10 +25,8 @@ const auto = new qiauto({
     }
 })
 
-console.log(auto["library"]);
-
-try {
-    auto["library"].build(rollup)
-} catch (e) {
-    console.error(e);
-}
+auto["library"].watch(watch, evt => {
+    if (evt.error) {
+        console.log(evt);
+    }
+})

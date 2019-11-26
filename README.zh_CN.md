@@ -1,5 +1,8 @@
 # Qi Auto Rollup
 
+> Other languages / 其他语言:  
+> [English](./README.md) | [简体中文](./README.zh_CN.md) 
+
 **注意：当前版本还未准备好为生产用途而发布**
 
 为 `Rollup` 自动生成配置项。

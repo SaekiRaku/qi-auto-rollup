@@ -27,12 +27,12 @@ export default {
     output: [{
             name,
             format: "cjs",
-            file: path.resolve(common.path.DIST, name + ".js")
+            file: path.resolve(common.path.DIST, "index.js")
         },
         {
             name,
             format: "esm",
-            file: path.resolve(common.path.DIST, name + ".es.js")
+            file: path.resolve(common.path.DIST, "index.es.js")
         }
     ]
 }

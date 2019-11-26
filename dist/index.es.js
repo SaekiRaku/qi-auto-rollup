@@ -1,20 +1,73 @@
-'use strict';
+import fs from 'fs';
+import path from 'path';
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+class Event {
+  constructor(options) {
+    let {
+      error,
+      message,
+      data
+    } = options;
+    this.error = error;
+    this.message = message;
+    this.data = data;
+  }
 
-var fs = _interopDefault(require('fs'));
-var path = _interopDefault(require('path'));
+  toString() {
+    if (this.error) {
+      return "ERROR: " + this.message;
+    } else {
+      return this.data.toString();
+    }
+  }
+
+}
 
 class Result {
   constructor() {
     this.config = {
       /* AbsPathForKey: { input, output } */
     };
+    this._watcher = {
+      /* AbsPathForKey: { input, output } */
+    };
   }
 
-  async build(rollup) {
+  watch(watch, callback) {
+    if (!watch) {
+      throw new Error("Please provid the rollup.watch");
+    }
+
+    for (let i in this.config) {
+      this._watcher[i] = watch(this.config[i].input);
+
+      this._watcher[i].on("event", function (evt) {
+        if (evt.code == "ERROR" || evt.code == "FATAL") {
+          callback && callback(new Event({
+            error: true,
+            message: i,
+            data: evt
+          }));
+        } else {
+          callback && callback(new Event({
+            error: false,
+            message: i,
+            data: evt
+          }));
+        }
+      });
+    }
+  }
+
+  stop() {
+    for (let i in this._watcher) {
+      this._watcher[i].stop();
+    }
+  }
+
+  async build(rollup, callback) {
     if (!rollup) {
-      throw new Error("Please provid the rollup");
+      throw new Error("Please provid the rollup.rollup");
     }
 
     return new Promise(async (resolve, reject) => {
@@ -26,13 +79,24 @@ class Result {
 
           try {
             await bundle.write(outputConfig);
-          } catch (e) {
-            reject(e);
+          } catch (err) {
+            let evt = new Event({
+              error: true,
+              message: i,
+              data: err
+            });
+            callback && callback(evt);
+            reject(evt);
           }
         }
       }
 
-      resolve();
+      let evt = new Event({
+        error: false,
+        message: "done"
+      });
+      callback && callback(evt);
+      resolve(evt);
     });
   }
 
@@ -56,7 +120,11 @@ var Name = options => {
   }
 
   if (typeof options.name == "function") {
-    return options.name;
+    return function (filepath) {
+      return utils.extractData(options.name, {
+        filepath
+      });
+    };
   }
 
   if (typeof options.name == "string") {
@@ -79,7 +147,9 @@ var Name = options => {
 };
 
 function Output(entrypoint, options) {
-  var formats = options.format;
+  var formats = utils.extractData(options.format, {
+    filepath: entrypoint
+  });
 
   if (typeof options.format == "string") {
     formats = [formats];
@@ -103,6 +173,9 @@ function Output(entrypoint, options) {
       }), Name(entrypoint, options.name).replace(".js", ".es.js"));
     }
 
+    tmp = Object.assign(tmp, utils.extractData(options.outputConfig, {
+      filepath: entrypoint
+    }));
     result.push(tmp);
   }
 
@@ -121,6 +194,9 @@ function index (options) {
       input: entry,
       output
     };
+    input = Object.assign(input, utils.extractData(options.inputConfig, {
+      filepath: entry
+    }));
     result.config[entry] = {
       input,
       output
@@ -130,4 +206,4 @@ function index (options) {
   return result;
 }
 
-module.exports = index;
+export default index;

@@ -8,7 +8,9 @@ var Name = (options) => {
         options.name = "[folder]";
     }
     if (typeof options.name == "function") {
-        return options.name
+        return function (filepath) {
+            return utils.extractData(options.name, { filepath });
+        }
     }
     if (typeof options.name == "string") {
         return function (filepath, name) {
@@ -27,7 +29,7 @@ var Name = (options) => {
 }
 
 function Output(entrypoint, options) {
-    var formats = options.format;
+    var formats = utils.extractData(options.format, { filepath: entrypoint });
     if (typeof options.format == "string") {
         formats = [formats];
     }
